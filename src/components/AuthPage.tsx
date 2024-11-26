@@ -15,7 +15,7 @@ interface GameSelectionUIProps {
 
 const gamePreviewData = [
   { id: 1, src: "/images/image DISPALY.png", alt: "Game Preview 1" },
-  { id: 2, src: "/images/image DISPALY.png", alt: "Game Preview 2" },
+  { id: 2, src: "/images/TrailblazerIMG.png", alt: "Game Preview 2" },
   { id: 3, src: "/images/image DISPALY.png", alt: "Game Preview 3" },
 ]
 
