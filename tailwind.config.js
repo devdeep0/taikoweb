@@ -12,6 +12,8 @@ module.exports = {
         title:["Staatliches", "sans-serif"],
         zk :["Epilogue", "sans-serif" ],
         baloo :["Baloo Da 2", 'sans-serif'],
+        raj:["Rajdhani", 'sans-serif'],
+        pop:["Poppins", "sans-serif"]
       }
     },
   },

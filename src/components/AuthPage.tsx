@@ -51,7 +51,7 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
           />
           <div className="h-[1px] w-12 bg-pink-500/50" />
         </div>
-        <div className="text-sm font-semibold tracking-widest text-pink-500">GAMES</div>
+        <div className="text-sm font-semibold tracking-widest text-pink-500 mt-3">GAMES</div>
       </div>
 
       {/* Game Preview Card */}
@@ -88,10 +88,10 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
 
       {/* Game List */}
       <div className="mb-6 space-y-3">
-        <div className="text-xs font-light tracking-[0.5em]">LIST</div>
+        <div className="text-sm font-light tracking-[0.5em]">LIST</div>
         
         {/* Atlas Game */}
-        <div className="flex items-center justify-between rounded-xl border border-pink-500/20 bg-gradient-to-r from-pink-500/10 to-transparent p-3">
+        <div className="flex items-center justify-between rounded-xl border border-pink-500/30 bg-gradient-to-r from-pink-500/10 to-transparent p-3">
           <div className="flex items-center gap-3">
             <Image
               src="/gameimg/atlas.png"
@@ -100,7 +100,7 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
               height={40}
               className="rounded-lg"
             />
-            <span className="font-medium tracking-wide">ATLAS</span>
+            <span className="font-medium  tracking-wide font-pop text-[14px]">ATLAS</span>
           </div>
           <button className="h-8 border-l border-pink-500/20 px-4 text-xs font-medium tracking-wider text-pink-500"
           onClick={() => onGameSelect("unity2")}
@@ -110,7 +110,7 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
         </div>
 
         {/* Trailblazer Game */}
-        <div className="flex items-center justify-between rounded-xl border border-pink-500/20 bg-gradient-to-r from-pink-500/10 to-transparent p-3">
+        <div className="flex items-center justify-between rounded-xl border border-pink-500/30 bg-gradient-to-r from-pink-500/10 to-transparent p-3">
           <div className="flex items-center gap-3">
             <Image
               src="/gameimg/trailblazer.png"
@@ -119,7 +119,7 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
               height={40}
               className="rounded-lg"
             />
-            <span className="font-medium tracking-wide">TRAILBLAZER</span>
+            <span className="font-medium tracking-wide font-pop text-[14px]">TRAILBLAZER</span>
           </div>
           <button className="h-8 border-l border-pink-500/20 px-4 text-xs font-medium tracking-wider text-pink-500"
           onClick={() => onGameSelect("unity3")}
