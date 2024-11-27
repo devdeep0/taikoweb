@@ -55,7 +55,7 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
       </div>
 
       {/* Game Preview Card */}
-      <div className="relative mb-4 overflow-hidden rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/10 to-transparent">
+      <div className="relative mb-4 overflow-hidden rounded-2xl border border-pink-500/30 bg-gradient-to-br from-pink-500/10 to-transparent">
           <div className="aspect-[4/3] w-full bg-black">
             {gamePreviewData.map((preview, index) => (
               <Image
