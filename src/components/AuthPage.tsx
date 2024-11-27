@@ -135,7 +135,7 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
       
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 flex justify-around border-t-2 border-pink-500/20 bg-black px-6 py-4 backdrop-blur">
+      <div className="fixed bottom-0 left-0 right-0 flex justify-around border-t-3 border-pink-500/20 bg-[#0C101B] px-6 py-5 backdrop-blur">
         <BarChart3 className="h-6 w-6 text-pink-500/50" />
         <Home className="h-6 w-6 text-pink-500" />
         <Menu className="h-6 w-6 text-pink-500/50" />
