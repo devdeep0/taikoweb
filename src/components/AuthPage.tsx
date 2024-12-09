@@ -128,7 +128,24 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
           </button>
         </div>
 
-        {/* Atlas Game (Second) */}
+ {/* Taiko Block Puzzle */}
+ <div className="flex items-center justify-between rounded-xl border border-pink-500/30 bg-gradient-to-r from-pink-500/10 to-transparent p-3">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/gameimg/TaikoBlockPuzzle.png"
+              alt="TaikoBlockPuzzle"
+              width={40}
+              height={40}
+              className="rounded-lg"
+            />
+            <span className="font-medium tracking-wide font-pop text-[14px]">Taiko Block Puzzle</span>
+          </div>
+          <button className="h-8 border-l border-pink-500/20 px-4 text-xs font-medium tracking-wider text-pink-500"
+          onClick={() => onGameSelect("unity4")}
+          disabled={isLoading}>
+            PLAY
+          </button>
+        </div>
        
       </div>
 
