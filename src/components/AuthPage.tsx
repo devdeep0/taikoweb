@@ -1,8 +1,18 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
+import  { Suspense } from 'react';
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+import { AutoConnect } from "thirdweb/react";
+
+import { useActiveAccount } from "thirdweb/react";
+import thirdwebIcon from "@public/thirdweb.svg";
+import { shortenAddress } from "thirdweb/utils";
+import { Button } from "@headlessui/react";
+import { client, wallet } from "@/app/constant";
+
+import Link from "next/link";
 import { BarChart3, Home, Menu } from 'lucide-react'
 interface GameSelectionUIProps {
   isLoading: boolean;
@@ -22,7 +32,7 @@ const gamePreviewData = [
 
 
 const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedGame, onGameSelect }) => {
-
+  const account = useActiveAccount();
   const [activeButton, setActiveButton] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0)
   useEffect(() => {
@@ -38,7 +48,6 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
       {/* Header */}
       <div className="mb-6 text-center">
         <div className="mb-1 flex justify-center">
-         
         </div>
         <div className="flex items-center justify-center gap-1">
           <div className="h-[1px] w-12 bg-pink-500/50" />
@@ -50,6 +59,21 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
             className="mb-1"
           />
           <div className="h-[1px] w-12 bg-pink-500/50" />
+          <AutoConnect client={client} wallets={[wallet]}/>
+    <div className="flex justify-center items-center h-full pr-2">
+    {/* <Button className="inline-flex items-center gap-2 rounded-[4px] font-raj underline underline-offset-4 decoration-[#19AE00] decoration-4 decoration-solid bg-transparent border-2 border-white py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">0x181871415415418148</Button>   */}
+
+              {account ? 
+                (
+                <> 
+                <Button onClick={() => (window as any).Telegram.WebApp.openLink(`https://etherscan.io/address/${account.address}`)} className="inline-flex items-center gap-2 rounded-[4px] font-raj underline underline-offset-4 decoration-[#19AE00] decoration-4 decoration-solid bg-transparent border-2 border-white py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">{shortenAddress(account.address)}</Button>  
+                </>
+                ) 
+              : (
+                  <p className="text-sm text-zinc-400">fetching smart account</p>
+                )}      
+
+            </div>
         </div>
         <div className="text-sm font-semibold tracking-widest text-pink-500 mt-3">GAMES</div>
       </div>
