@@ -1,19 +1,9 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-
-import  { Suspense } from 'react';
-import { createWallet, inAppWallet } from "thirdweb/wallets";
-import { AutoConnect } from "thirdweb/react";
-
 import { useActiveAccount } from "thirdweb/react";
-import thirdwebIcon from "@public/thirdweb.svg";
-import { shortenAddress } from "thirdweb/utils";
-import { Button } from "@headlessui/react";
-import { client, wallet } from "@/app/constant";
-
-import Link from "next/link";
 import { BarChart3, Home, Menu } from 'lucide-react'
+import { motion } from "framer-motion"
 interface GameSelectionUIProps {
   isLoading: boolean;
   selectedGame: string;
@@ -22,14 +12,11 @@ interface GameSelectionUIProps {
 
 }
 
-
 const gamePreviewData = [
   { id: 1, src: "/images/image DISPALY.png", alt: "Game Preview 1" },
   { id: 2, src: "/images/TrailblazerIMG.png", alt: "Game Preview 2" },
   { id: 3, src: "/images/image DISPALY.png", alt: "Game Preview 3" },
 ]
-
-
 
 const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedGame, onGameSelect }) => {
   const account = useActiveAccount();
@@ -42,6 +29,18 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
 
     return () => clearInterval(timer)
   }, [])
+
+  
+ const [Active, setActive] = useState("home");
+ const [showComingSoon, setShowComingSoon] = useState(false);
+ const [comingSoonMessage, setComingSoonMessage] = useState("");
+ useEffect(() => {
+   if (showComingSoon) {
+     const timer = setTimeout(() => setShowComingSoon(false), 3000);
+     return () => clearTimeout(timer); // Cleanup the timer on unmount
+   }
+ }, [showComingSoon]);
+
   return (
     <div className="h-screen bg-black text-white bg-[url('/bg/BG.png')] bg-cover bg-center">
     <div className="mx-auto max-w-md bg-transparent p-6 pb-20">
@@ -163,12 +162,34 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
       
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 flex justify-around border-t-3 border-pink-500/20 bg-[#0C101B] px-6 py-5 backdrop-blur">
-        <BarChart3 className="h-6 w-6 text-pink-500/50" />
+      <div className="fixed z-30 bottom-0 left-0 right-0 flex justify-around border-t-3 border-pink-500/20 bg-[#0C101B] px-6 py-5 backdrop-blur w-full">
+        <BarChart3 className="h-6 w-6 text-pink-500/50 cursor-pointer" 
+         onClick={() => {
+                setShowComingSoon(true);
+                setComingSoonMessage("Leaderboard Coming Soon");
+                setActive("chart");
+              }}
+        />
         <Home className="h-6 w-6 text-pink-500" />
-        <Menu className="h-6 w-6 text-pink-500/50" />
+        <Menu className="h-6 w-6 text-pink-500/50" 
+         onClick={() => {
+          setShowComingSoon(true);
+          setComingSoonMessage("Tasks Coming Soon");
+          setActive("todo");
+        }}
+        />
       </div>
     </div>
+    {showComingSoon && (
+  <motion.div 
+    animate={{ y: -20 }} 
+    className="absolute bottom-20 left-0 right-0 mx-auto flex items-center justify-center z-20"
+  >
+    <div className="font-bold text-[15px] bg-black border-2 border-white text-white rounded-[10px] p-2">
+      {comingSoonMessage}
+    </div>
+  </motion.div>
+)}
   </div>
   );
 };
