@@ -1,9 +1,16 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useActiveAccount } from "thirdweb/react";
+
 import { BarChart3, Home, Menu } from 'lucide-react'
 import { motion } from "framer-motion"
+import { AutoConnect } from "thirdweb/react";
+
+import { useActiveAccount } from "thirdweb/react";
+
+import { shortenAddress } from "thirdweb/utils";
+import { Button } from "@headlessui/react";
+import { client, wallet } from "@/app/constant";
 interface GameSelectionUIProps {
   isLoading: boolean;
   selectedGame: string;
@@ -60,6 +67,21 @@ const GameSelectionUI : React.FC<GameSelectionUIProps> = ({ isLoading, selectedG
           <div className="h-[1px] w-12 bg-pink-500/50" />
           
     
+        </div>
+        <AutoConnect client={client} wallets={[wallet]}/>
+ <div className="flex justify-center items-center h-full pr-2">
+ {/* <Button className="inline-flex items-center gap-2 rounded-[4px] font-raj underline underline-offset-4 decoration-[#19AE00] decoration-4 decoration-solid bg-transparent border-2 border-white py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">0x181871415415418148</Button>   */}
+
+          {account ? 
+            (
+            <> 
+            <button onClick={() => (window as any).Telegram.WebApp.openLink(`https://etherscan.io/address/${account.address}`)} className="inline-flex items-center gap-2 rounded-2xl font-pop underline underline-offset-4 decoration-pink-500 decoration-4 decoration-solid bg-transparent border-2 border-white py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">{shortenAddress(account.address)}</button>  
+            </>
+            ) 
+          : (
+              <p className="text-sm text-zinc-400">fetching smart account</p>
+            )}      
+
         </div>
         <div className="text-sm font-semibold tracking-widest text-pink-500 mt-3">GAMES</div>
       </div>
